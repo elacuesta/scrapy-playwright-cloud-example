@@ -1,0 +1,3 @@
+scrapinghub-entrypoint-scrapy
+scrapy-playwright
+scrapy
