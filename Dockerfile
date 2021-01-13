@@ -38,8 +38,15 @@ RUN apt-get update -qq \
     && rm -rf /var/lib/apt/lists
 
 WORKDIR /app
+
 RUN pip install playwright
+COPY ./update_browsers_json.py /app/update_browsers_json.py
+RUN python update_browsers_json.py
 RUN python -m playwright install
+# hacky workaround to know where to look for the browser executables
+RUN mv /root/.cache/ms-playwright /ms-playwright
+RUN chmod -Rf 774 /ms-playwright
+
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 

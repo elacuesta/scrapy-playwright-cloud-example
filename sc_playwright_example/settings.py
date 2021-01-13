@@ -1,3 +1,10 @@
+import inspect
+import json
+from pathlib import Path
+
+import playwright
+
+
 BOT_NAME = "sc_playwright_example"
 
 SPIDER_MODULES = ["sc_playwright_example.spiders"]
@@ -26,4 +33,10 @@ CONCURRENT_REQUESTS = 32
 
 LOG_LEVEL = "INFO"
 
-PLAYWRIGHT_LAUNCH_OPTIONS = {}
+# get path for the bundled chromium binary
+browsers_path = Path(inspect.getfile(playwright)).parent / "driver/browsers.json"
+chromium = json.loads(browsers_path.read_text())["browsers"][0]
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "executablePath": f"/ms-playwright/chromium-{chromium['revision']}/chrome-linux/chrome"
+}
