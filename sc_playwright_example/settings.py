@@ -38,5 +38,6 @@ browsers_path = Path(inspect.getfile(playwright)).parent / "driver/browsers.json
 chromium = json.loads(browsers_path.read_text())["browsers"][0]
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "executablePath": f"/ms-playwright/chromium-{chromium['revision']}/chrome-linux/chrome"
+    "executablePath": f"/ms-playwright/chromium-{chromium['revision']}/chrome-linux/chrome",
+    "args": ["--no-sandbox"],
 }
