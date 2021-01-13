@@ -45,7 +45,7 @@ RUN python update_browsers_json.py
 RUN python -m playwright install
 # hacky workaround to know where to look for the browser executables
 RUN mv /root/.cache/ms-playwright /ms-playwright
-RUN chmod -Rf 774 /ms-playwright
+RUN chmod -Rf 777 /ms-playwright  # FIXME
 
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
