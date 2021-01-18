@@ -6,5 +6,5 @@ setup(
     name="project",
     version="1.0",
     packages=find_packages(),
-    entry_points={"scrapy": ["settings = sc_playwright_example.settings"]},
+    entry_points={"scrapy": ["settings = scrapy_playwright_cloud_example.settings"]},
 )

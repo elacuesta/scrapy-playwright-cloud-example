@@ -5,10 +5,10 @@ from pathlib import Path
 import playwright
 
 
-BOT_NAME = "sc_playwright_example"
+BOT_NAME = "scrapy_playwright_cloud_example"
 
-SPIDER_MODULES = ["sc_playwright_example.spiders"]
-NEWSPIDER_MODULE = "sc_playwright_example.spiders"
+SPIDER_MODULES = ["scrapy_playwright_cloud_example.spiders"]
+NEWSPIDER_MODULE = "scrapy_playwright_cloud_example.spiders"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = (

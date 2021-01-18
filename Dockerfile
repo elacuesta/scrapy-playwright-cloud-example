@@ -40,16 +40,16 @@ RUN apt-get update -qq \
 WORKDIR /app
 
 RUN pip install playwright
-COPY ./update_browsers_json.py /app/update_browsers_json.py
-RUN python update_browsers_json.py
+COPY ./script/update_browsers_json.py /app/script/update_browsers_json.py
+RUN python /app/script/update_browsers_json.py
 RUN python -m playwright install
 # hacky workaround to know where to look for the browser executables
 RUN mv /root/.cache/ms-playwright /ms-playwright
-RUN chmod -Rf 777 /ms-playwright  # FIXME
+RUN chmod -Rf 755 /ms-playwright
 
 COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV SCRAPY_SETTINGS_MODULE sc_playwright_example.settings
+ENV SCRAPY_SETTINGS_MODULE scrapy_playwright_cloud_example.settings
 COPY . /app
 RUN python setup.py install
