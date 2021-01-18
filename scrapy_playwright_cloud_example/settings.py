@@ -19,19 +19,21 @@ USER_AGENT = (
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-
-DOWNLOAD_HANDLERS = {
-    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    # "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-}
-
 FEED_EXPORT_ENCODING = "utf8"
 FEED_EXPORT_INDENT = 4
 
 CONCURRENT_REQUESTS = 32
 
 LOG_LEVEL = "INFO"
+
+# scrapy-playwright settings
+
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    # "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
 
 # get path for the bundled chromium binary
 browsers_path = Path(inspect.getfile(playwright)).parent / "driver/browsers.json"
