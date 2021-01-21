@@ -1,9 +1,16 @@
+import subprocess
+
 from scrapy import Spider, Request
 from scrapy_playwright.page import PageCoroutine
 
 
 class QuotesSpider(Spider):
     name = "quotes"
+
+    def __init__(self, *args, **kwargs):
+        super(). __init__(*args, **kwargs)
+        user = subprocess.run("whoami", stdout=subprocess.PIPE).stdout.strip().decode("utf8")
+        self.logger.info(f"Current user is '{user}'")
 
     def start_requests(self):
         yield Request(
