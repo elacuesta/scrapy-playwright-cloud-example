@@ -35,21 +35,18 @@ RUN apt-get update -qq \
         libxss1 \
         libxtst6 \
         xdg-utils \
+        nano \
     && rm -rf /var/lib/apt/lists
 
 WORKDIR /app
+COPY . /app
 
-RUN pip install playwright
-COPY ./script/update_browsers_json.py /app/script/update_browsers_json.py
-RUN python /app/script/update_browsers_json.py
-RUN python -m playwright install
-# hacky workaround to know where to look for the browser executables
-RUN mv /root/.cache/ms-playwright /ms-playwright
-RUN chmod -Rf 755 /ms-playwright
-
-COPY ./requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install playwright --no-cache-dir \
+    && python /app/script/update_browsers_json.py \
+    && python -m playwright install \
+    && mv /root/.cache/ms-playwright /ms-playwright \
+    && chmod -Rf 755 /ms-playwright \
+    && pip install --no-cache-dir -r requirements.txt
 
 ENV SCRAPY_SETTINGS_MODULE scrapy_playwright_cloud_example.settings
-COPY . /app
 RUN python setup.py install

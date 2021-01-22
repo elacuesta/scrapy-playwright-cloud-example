@@ -35,11 +35,13 @@ DOWNLOAD_HANDLERS = {
     # "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
-# get path for the bundled chromium binary
+# get path for the bundled browser binary
 browsers_path = Path(inspect.getfile(playwright)).parent / "driver/browsers.json"
-chromium = json.loads(browsers_path.read_text())["browsers"][0]
+browsers = {x["name"]: x for x in json.loads(browsers_path.read_text())["browsers"]}
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "executablePath": f"/ms-playwright/chromium-{chromium['revision']}/chrome-linux/chrome",
+    "executablePath": f"/ms-playwright/chromium-{browsers['chromium']['revision']}/chrome-linux/chrome",
+    # "executablePath": f"/ms-playwright/firefox-{browsers['firefox']['revision']}/firefox/firefox",
     "args": ["--no-sandbox"],
+    "timeout": 10000,
 }

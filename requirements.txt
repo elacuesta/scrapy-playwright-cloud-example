@@ -1,3 +1,4 @@
 scrapinghub-entrypoint-scrapy
+playwright==0.171.1
 scrapy-playwright
 scrapy
