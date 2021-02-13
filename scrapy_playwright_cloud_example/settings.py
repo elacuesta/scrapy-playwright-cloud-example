@@ -1,10 +1,3 @@
-import inspect
-import json
-from pathlib import Path
-
-import playwright
-
-
 BOT_NAME = "scrapy_playwright_cloud_example"
 
 SPIDER_MODULES = ["scrapy_playwright_cloud_example.spiders"]
@@ -32,16 +25,17 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    # "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
-# get path for the bundled browser binary
-browsers_path = Path(inspect.getfile(playwright)).parent / "driver/browsers.json"
-browsers = {x["name"]: x for x in json.loads(browsers_path.read_text())["browsers"]}
-PLAYWRIGHT_BROWSER_TYPE = "chromium"
+browsers = {
+    "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
+    "firefox": "/ms-playwright/firefox/firefox/firefox",
+    "webkit": "/ms-playwright/webkit/pw_run.sh",
+}
+PLAYWRIGHT_BROWSER_TYPE = "webkit"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "executablePath": f"/ms-playwright/chromium-{browsers['chromium']['revision']}/chrome-linux/chrome",
-    # "executablePath": f"/ms-playwright/firefox-{browsers['firefox']['revision']}/firefox/firefox",
-    "args": ["--no-sandbox"],
+    "executablePath": browsers[PLAYWRIGHT_BROWSER_TYPE],
     "timeout": 10000,
+    # "args": ["--no-sandbox"],
 }
