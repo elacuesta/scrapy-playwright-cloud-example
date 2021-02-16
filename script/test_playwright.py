@@ -17,12 +17,12 @@ async def main():
             print("*" * 100)
             print(browser_type.name)
             browser = await browser_type.launch(
-                executablePath=browsers[browser_type.name]["path"],
+                executablePath=browsers[browser_type.name],
                 timeout=5000,
-                # args=["--no-sandbox"],
+                # args=["--no-sandbox"],  # --no-sandbox is not recognized in webkit
             )
             page = await browser.newPage()
-            await page.goto("https://httpbin.org/ip")
+            await page.goto("http://httpbin.org/get")
             print(await page.content())
             await browser.close()
 

@@ -33,9 +33,11 @@ browsers = {
     "firefox": "/ms-playwright/firefox/firefox/firefox",
     "webkit": "/ms-playwright/webkit/pw_run.sh",
 }
+
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 10000
 PLAYWRIGHT_BROWSER_TYPE = "webkit"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "executablePath": browsers[PLAYWRIGHT_BROWSER_TYPE],
     "timeout": 10000,
-    # "args": ["--no-sandbox"],
+    # "args": ["--no-sandbox"],  # --no-sandbox is not recognized in webkit
 }
