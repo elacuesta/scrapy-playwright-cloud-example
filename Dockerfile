@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright
+FROM mcr.microsoft.com/playwright:focal
 
 WORKDIR /app
 COPY . /app
@@ -9,8 +9,7 @@ RUN apt-get update \
     && python3.8 -m pip install --no-cache-dir --upgrade pip \
     && python3.8 -m pip install --no-cache-dir playwright
 
-RUN mv /home/pwuser/.cache/ms-playwright /ms-playwright \
-    && chmod -Rf 777 /ms-playwright \
+RUN chmod -Rf 777 /ms-playwright \
     && mv /ms-playwright/chromium-* /ms-playwright/chromium \
     && mv /ms-playwright/firefox-* /ms-playwright/firefox \
     && mv /ms-playwright/webkit-* /ms-playwright/webkit \
