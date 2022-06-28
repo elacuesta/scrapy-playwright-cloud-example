@@ -44,18 +44,3 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 
 For more information, check out the [full documentation](https://shub.readthedocs.io/en/stable/deploy-custom-image.html)
 on how to build and deploy Docker images to Scrapy Cloud.
-
-
-### Crawlera support
-
-With Chromium, Crawlera returns an _Internal server error_ if the API key is set via the `proxy.username` argument in
-[`playwright.BrowserType.launch`](https://playwright.dev/python/docs/api/class-browsertype#browser_typelaunchoptions),
-but it works correctly if the `Proxy-Authorization` header is explicitly included. However, there seems to be a
-problem with the way the upstream implementation handles the `Proxy-Authorization` in Chromium
-(https://github.com/microsoft/playwright-python/issues/443).
-
-Proxy support works correctly with Firefox, but I wasn't able to run Firefox in Docker
-as a non-root user, which is how Scrapy Cloud uses the image.
-
-Because of the above, `webkit` is the recommended browser to be used in Scrapy Cloud if Crawlera support is needed.
-```
