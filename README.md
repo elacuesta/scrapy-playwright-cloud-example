@@ -18,14 +18,14 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
-browsers = {
+_browsers = {
     "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
     "firefox": "/ms-playwright/firefox/firefox/firefox",
     "webkit": "/ms-playwright/webkit/pw_run.sh",
 }
-PLAYWRIGHT_BROWSER_TYPE = "webkit"
+PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "executablePath": browsers[PLAYWRIGHT_BROWSER_TYPE],
+    "executablePath": _browsers[PLAYWRIGHT_BROWSER_TYPE],
     "timeout": 10000,
 }
 ```
@@ -41,6 +41,7 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 * Make sure you have [`shub`](https://shub.readthedocs.io/en/stable/index.html) installed
 * Replace the project id (`project: <project-id>`) in the `scrapinghub.yml` file with your own project id
 * Run `shub image upload`
+* Run `shub schedule headers`
 
 For more information, check out the [full documentation](https://shub.readthedocs.io/en/stable/deploy-custom-image.html)
 on how to build and deploy Docker images to Scrapy Cloud.
