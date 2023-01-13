@@ -25,7 +25,7 @@ _browsers = {
 }
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "executablePath": _browsers[PLAYWRIGHT_BROWSER_TYPE],
+    "executable_path": _browsers[PLAYWRIGHT_BROWSER_TYPE],
     "timeout": 10000,
 }
 ```

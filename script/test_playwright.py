@@ -17,7 +17,7 @@ async def main():
             print("*" * 100)
             print(browser_type.name)
             browser = await browser_type.launch(
-                executablePath=browsers[browser_type.name],
+                executable_path=browsers[browser_type.name],
                 timeout=5000,
                 # args=["--no-sandbox"],  # --no-sandbox is not recognized in webkit
             )
