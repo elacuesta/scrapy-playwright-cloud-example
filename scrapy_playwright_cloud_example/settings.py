@@ -3,10 +3,7 @@ BOT_NAME = "scrapy_playwright_cloud_example"
 SPIDER_MODULES = ["scrapy_playwright_cloud_example.spiders"]
 NEWSPIDER_MODULE = "scrapy_playwright_cloud_example.spiders"
 
-USER_AGENT = (
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36"
-)
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
 
 ROBOTSTXT_OBEY = False
 
@@ -16,6 +13,7 @@ FEED_EXPORT_INDENT = 4
 CONCURRENT_REQUESTS = 32
 
 LOG_LEVEL = "INFO"
+
 
 # scrapy-playwright
 ###################
@@ -29,8 +27,8 @@ DOWNLOAD_HANDLERS = {
 
 _browsers = {
     "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
-    "firefox": "/ms-playwright/firefox/firefox/firefox",
-    "webkit": "/ms-playwright/webkit/pw_run.sh",
+    # "firefox": "/ms-playwright/firefox/firefox/firefox",
+    # "webkit": "/ms-playwright/webkit/pw_run.sh",
 }
 
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 10000

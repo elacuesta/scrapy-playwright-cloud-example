@@ -5,7 +5,8 @@ Trying [`scrapy-playwright`](https://github.com/elacuesta/scrapy-playwright) on 
 
 ### Dockerfile
 
-A custom Docker image is provided in order to install the system dependencies needed for the headless browsers.
+A custom Docker image is available at [Dockerfile](Dockerfile).
+By default only the `chromium` browser is installed, along with its dependencies.
 
 
 ### Settings
@@ -20,8 +21,8 @@ DOWNLOAD_HANDLERS = {
 
 _browsers = {
     "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
-    "firefox": "/ms-playwright/firefox/firefox/firefox",
-    "webkit": "/ms-playwright/webkit/pw_run.sh",
+    # "firefox": "/ms-playwright/firefox/firefox/firefox",
+    # "webkit": "/ms-playwright/webkit/pw_run.sh",
 }
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
 PLAYWRIGHT_LAUNCH_OPTIONS = {
