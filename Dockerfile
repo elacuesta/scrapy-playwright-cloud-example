@@ -2,7 +2,6 @@ FROM python:3.10.10-bullseye
 
 WORKDIR /app
 
-# Install Python
 RUN apt-get update \
     && apt-get install nano \
     && pip install --no-cache-dir --upgrade pip \
