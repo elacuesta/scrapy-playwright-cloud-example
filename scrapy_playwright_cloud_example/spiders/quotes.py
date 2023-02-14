@@ -11,7 +11,7 @@ class QuotesSpider(Spider):
             meta=dict(
                 playwright=True,
                 playwright_page_methods=[
-                    PageMethod("wait_for_elector", "div.quote"),
+                    PageMethod("wait_for_selector", "div.quote"),
                     PageMethod("evaluate", "window.scrollBy(0, document.body.scrollHeight)"),
                     PageMethod("wait_for_selector", "div.quote:nth-child(11)"),
                 ],
