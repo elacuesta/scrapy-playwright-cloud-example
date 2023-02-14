@@ -1,22 +1,19 @@
-FROM mcr.microsoft.com/playwright:focal
+FROM python:3.10.10-bullseye
 
 WORKDIR /app
 
 # Install Python
 RUN apt-get update \
-    && apt-get install -y python3.9-dev python3-pip nano \
-    && python3.9 -m pip install --no-cache-dir --upgrade pip \
-    && python3.9 -m pip install --no-cache-dir playwright
-
-COPY requirements.txt /app/requirements.txt
-RUN rm -rf /ms-playwright/* \
-    && python3.9 -m playwright install chromium \
-    && chmod -Rf 777 /ms-playwright \
+    && apt-get install nano \
+    && pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir playwright scrapy-playwright scrapinghub-entrypoint-scrapy \
+    && playwright install --with-deps chromium \
+    && mv /root/.cache/ms-playwright /ms-playwright \
     && mv /ms-playwright/chromium-* /ms-playwright/chromium \
     # && mv /ms-playwright/firefox-* /ms-playwright/firefox \
     # && mv /ms-playwright/webkit-* /ms-playwright/webkit \
-    && pip install --no-cache-dir -r requirements.txt
+    && chmod -Rf 777 /ms-playwright
 
 COPY . /app
 ENV SCRAPY_SETTINGS_MODULE scrapy_playwright_cloud_example.settings
-RUN python3.9 setup.py install
+RUN python setup.py install

@@ -1,6 +1,4 @@
 endpoint: https://dash.scrapinghub.com/api/
 image: true
 project: 444441
-requirements:
-  file: requirements.txt
 version: GIT
