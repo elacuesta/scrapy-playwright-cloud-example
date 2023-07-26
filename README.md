@@ -1,24 +1,18 @@
 # `scrapy-playwright` sample project for Scrapy Cloud
 
-Trying [`scrapy-playwright`](https://github.com/elacuesta/scrapy-playwright) on [Zyte Scrapy Cloud](https://www.zyte.com/scrapy-cloud/).
+Running [`scrapy-playwright`](https://github.com/elacuesta/scrapy-playwright)
+on [Zyte Scrapy Cloud](https://www.zyte.com/scrapy-cloud/).
 
 
 ### Dockerfile
 
-A custom Docker image is available at [Dockerfile](Dockerfile).
-By default only the `chromium` browser is installed, along with its dependencies.
+A custom Docker image is provided: [Dockerfile](Dockerfile). To keep the
+resulting image small, only the `chromium` browser is installed by default.
 
 
 ### Settings
 
 ```python
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-
-DOWNLOAD_HANDLERS = {
-    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
-}
-
 _browsers = {
     "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
     # "firefox": "/ms-playwright/firefox/firefox/firefox",
@@ -31,10 +25,9 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 }
 ```
 
-* `TWISTED_REACTOR`: `scrapy-playwright` will only function with the `asyncio`-based Twisted reactor
-* `DOWNLOAD_HANDLERS`: tells Scrapy to use the library's download handler to process requests
-* `PLAYWRIGHT_LAUNCH_OPTIONS`: the Docker image will be executed by a non-root user,
-    and hence the path to the browser executable needs to be set explicitly.
+* `PLAYWRIGHT_LAUNCH_OPTIONS`: the process within the Docker container will be
+    executed by a user different from the one who built the image, the path to
+    the browser executable needs to be set explicitly.
 
 
 ### Build and deploy
