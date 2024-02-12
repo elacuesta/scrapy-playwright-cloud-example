@@ -1,3 +1,4 @@
 image: true
 project: 444441
-version: GIT
+requirements:
+    file: requirements.txt
