@@ -1,27 +1,27 @@
 import asyncio
 
-from playwright import async_playwright
+from playwright.async_api import async_playwright
 
 
-browsers = {
-    "chromium": "/ms-playwright/chromium/chrome-linux/chrome",
-    "firefox": "/ms-playwright/firefox/firefox/firefox",
-    "webkit": "/ms-playwright/webkit/pw_run.sh",
-}
+# only chromium installed by default to reduce image size
+BROWSERS = [
+    "chromium",
+    # "firefox",
+    # "webkit",
+]
 
 
 async def main():
     async with async_playwright() as pw:
-        # for browser_type in [pw.chromium, pw.firefox, pw.webkit]:
-        for browser_type in [pw.webkit]:
+        for browser_name in BROWSERS:
             print("*" * 100)
-            print(browser_type.name)
+            print(browser_name)
+            browser_type = getattr(pw, browser_name)
             browser = await browser_type.launch(
-                executable_path=browsers[browser_type.name],
                 timeout=5000,
                 # args=["--no-sandbox"],  # --no-sandbox is not recognized in webkit
             )
-            page = await browser.newPage()
+            page = await browser.new_page()
             await page.goto("http://httpbin.org/get")
             print(await page.content())
             await browser.close()
