@@ -1,0 +1,4 @@
+scrapy==2.13.3
+scrapy-playwright==0.0.44
+playwright==1.54.0
+scrapinghub-entrypoint-scrapy==0.17.7

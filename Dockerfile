@@ -1,4 +1,4 @@
-FROM python:3.11.4-slim-bullseye
+FROM python:3.12.11-slim-bookworm
 
 WORKDIR /app
 COPY . /app
@@ -11,5 +11,5 @@ RUN apt-get update \
     && playwright install --with-deps chromium \
     && chmod -Rf 777 $PLAYWRIGHT_BROWSERS_PATH
 
-ENV SCRAPY_SETTINGS_MODULE scrapy_playwright_cloud_example.settings
+ENV SCRAPY_SETTINGS_MODULE=scrapy_playwright_cloud_example.settings
 RUN python setup.py install
